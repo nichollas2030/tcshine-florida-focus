@@ -2,41 +2,61 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
+/* TC Shine Cleaning Services Design System - Florida Premium Cleaning 
+All colors MUST be HSL. Florida-inspired professional cleaning aesthetic.
 */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-
+    /* Brand Colors - Trust & Cleanliness */
+    --primary: 214 83% 37%;         /* Trust Blue #0d5cb6 */
+    --primary-foreground: 0 0% 100%;
+    --primary-light: 214 83% 47%;   /* Lighter blue for hover */
+    
+    --secondary: 142 76% 46%;       /* WhatsApp Green #25D366 */
+    --secondary-foreground: 0 0% 100%;
+    
+    --accent: 122 39% 49%;          /* Success Green #4CAF50 */
+    --accent-foreground: 0 0% 100%;
+    
+    /* Background System */
+    --background: 210 40% 98%;      /* Clean Ice #f8fafc */
+    --foreground: 216 28% 22%;      /* Dark Text #2d3748 */
+    
+    --card: 0 0% 100%;              /* Pure White */
+    --card-foreground: 216 28% 22%;
+    
+    /* Neutral Grays */
+    --muted: 210 40% 96%;           /* Light Gray Background */
+    --muted-foreground: 215 16% 35%; /* Secondary Text #4a5568 */
+    
+    --border: 214 31% 91%;          /* Light Border */
+    --input: 214 31% 91%;
+    --ring: 214 83% 37%;            /* Focus Ring - Primary Blue */
+    
+    /* Interactive States */
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-
-    --radius: 0.5rem;
+    --popover-foreground: 216 28% 22%;
+    
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    
+    /* Design System Variables */
+    --radius: 0.75rem;              /* Softer, more premium feel */
+    
+    /* Florida-specific Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(214 83% 37%), hsl(214 83% 47%));
+    --gradient-ocean: linear-gradient(180deg, hsl(210 40% 98%), hsl(214 31% 91%));
+    --gradient-success: linear-gradient(135deg, hsl(142 76% 46%), hsl(122 39% 49%));
+    
+    /* Shadows for Premium Feel */
+    --shadow-soft: 0 4px 12px -2px hsl(214 83% 37% / 0.08);
+    --shadow-medium: 0 8px 24px -4px hsl(214 83% 37% / 0.12);
+    --shadow-strong: 0 16px 40px -8px hsl(214 83% 37% / 0.16);
+    
+    /* Animation Variables */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
     --sidebar-background: 0 0% 98%;
 
@@ -101,5 +121,128 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+/* Florida Cleaning Services - Custom Component Styles */
+@layer components {
+  /* Hero Button Variants */
+  .btn-whatsapp {
+    @apply bg-secondary text-secondary-foreground hover:bg-secondary/90 
+           px-8 py-4 rounded-xl font-semibold text-lg
+           transition-all duration-300 hover:scale-105
+           shadow-lg hover:shadow-xl;
+    background: var(--gradient-success);
+  }
+  
+  .btn-primary {
+    @apply bg-primary text-primary-foreground hover:bg-primary/90 
+           px-6 py-3 rounded-lg font-semibold
+           transition-all duration-300 hover:scale-105
+           shadow-md hover:shadow-lg;
+    background: var(--gradient-hero);
+  }
+  
+  /* Service Cards */
+  .service-card {
+    @apply bg-card text-card-foreground p-6 rounded-2xl
+           border border-border hover:shadow-lg
+           transition-all duration-300 hover:-translate-y-1;
+    box-shadow: var(--shadow-soft);
+  }
+  
+  .service-card:hover {
+    box-shadow: var(--shadow-medium);
+  }
+  
+  /* Section Backgrounds */
+  .section-gradient {
+    background: var(--gradient-ocean);
+  }
+  
+  /* Premium Input Styling */
+  .input-premium {
+    @apply w-full px-4 py-3 rounded-lg border border-border
+           bg-background text-foreground
+           focus:ring-2 focus:ring-primary/20 focus:border-primary
+           transition-all duration-200;
+  }
+  
+  /* Floating WhatsApp Button */
+  .whatsapp-float {
+    @apply fixed bottom-6 right-6 z-50
+           bg-secondary text-secondary-foreground
+           p-4 rounded-full shadow-lg
+           hover:shadow-xl hover:scale-110
+           transition-all duration-300;
+    animation: pulse 2s infinite;
+  }
+  
+  /* Smooth Animations */
+  .fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+  
+  .slide-up {
+    animation: slideUp 0.8s ease-out forwards;
+  }
+  
+  /* Trust Indicators */
+  .trust-badge {
+    @apply inline-flex items-center gap-2 px-4 py-2
+           bg-accent/10 text-accent rounded-full
+           font-medium text-sm;
+  }
+}
+
+/* Premium Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 hsl(var(--secondary) / 0.4);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 10px hsl(var(--secondary) / 0);
+  }
+}
+
+/* Typography Enhancements */
+@layer utilities {
+  .text-gradient {
+    background: var(--gradient-hero);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .shadow-premium {
+    box-shadow: var(--shadow-medium);
+  }
+  
+  .transition-premium {
+    transition: var(--transition-smooth);
   }
 }
